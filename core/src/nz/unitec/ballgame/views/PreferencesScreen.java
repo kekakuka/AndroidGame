@@ -31,6 +31,7 @@ public class PreferencesScreen implements Screen{
 	private Label volumeSoundLabel;
 	private Label musicOnOffLabel;
 	private Label soundOnOffLabel;
+	private Label gravityOnOffLabel;
 
 	private TextureAtlas atlas;
 	private TextureAtlas.AtlasRegion background;
@@ -110,6 +111,18 @@ public class PreferencesScreen implements Screen{
 			}
 		});
 
+		// gravity on/off
+		final CheckBox gravityCheckbox = new CheckBox(null, skin);
+		gravityCheckbox.setChecked(parent.getPreferences().isGravityEnabled());
+		gravityCheckbox.addListener(new EventListener() {
+			@Override
+			public boolean handle(Event event) {
+				boolean enabled = gravityCheckbox.isChecked();
+				parent.getPreferences().setGravityEnabled(enabled);
+				return false;
+			}
+		});
+
 		// return to main screen button
 		final TextButton backButton = new TextButton("Back", skin, "small");
 		backButton.addListener(new ChangeListener() {
@@ -126,6 +139,7 @@ public class PreferencesScreen implements Screen{
 		volumeSoundLabel = new Label( "Sound Volume", skin );
 		musicOnOffLabel = new Label( "Music", skin );
 		soundOnOffLabel = new Label( "Sound Effect", skin );
+		gravityOnOffLabel = new Label( "Gravity", skin );
 		
 		table.add(titleLabel).colspan(2);
 		table.row().pad(40,0,0,10);
@@ -140,6 +154,9 @@ public class PreferencesScreen implements Screen{
 		table.row().pad(20,0,0,10);
 		table.add(soundOnOffLabel).left();
 		table.add(soundEffectsCheckbox);
+		table.row().pad(20,0,0,10);
+		table.add(gravityOnOffLabel).left();
+		table.add(gravityCheckbox);
 		table.row().pad(50,0,0,10);
 		table.add(backButton).colspan(2);
 

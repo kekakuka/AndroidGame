@@ -7,6 +7,7 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
+import nz.unitec.ballgame.AppPreferences;
 import nz.unitec.ballgame.controller.KeyboardController;
 import nz.unitec.ballgame.entity.components.B2dBodyComponent;
 import nz.unitec.ballgame.entity.components.BulletComponent;
@@ -21,14 +22,16 @@ public class PlayerControlSystem extends IteratingSystem {
     ComponentMapper<B2dBodyComponent> bodm;
     ComponentMapper<StateComponent> sm;
     KeyboardController controller;
+    AppPreferences prefs;
 
     private float lastTouchedX = 0;
 
     @SuppressWarnings("unchecked")
-    public PlayerControlSystem(KeyboardController keyCon, BallFactory ballFactory) {
+    public PlayerControlSystem(KeyboardController keyCon, BallFactory ballFactory, AppPreferences prefs) {
         super(Family.all(PlayerComponent.class).get());
         controller = keyCon;
         this.ballFactory = ballFactory;
+        this.prefs = prefs;
         pm = ComponentMapper.getFor(PlayerComponent.class);
         bodm = ComponentMapper.getFor(B2dBodyComponent.class);
         sm = ComponentMapper.getFor(StateComponent.class);
@@ -75,17 +78,21 @@ public class PlayerControlSystem extends IteratingSystem {
             b2body.body.setLinearVelocity(MathUtils.lerp(b2body.body.getLinearVelocity().x, 30f, 1f), b2body.body.getLinearVelocity().y);
         }
 
-        if (controller.isTouched()) {
-            if (lastTouchedX == 0) {
-                lastTouchedX = controller.getTouchedPosition().x;
-            } else {
-                float currentTouchedX = controller.getTouchedPosition().x;
-                float offset = currentTouchedX - lastTouchedX;
-                b2body.body.setTransform(b2body.body.getPosition().x + offset, b2body.body.getPosition().y, b2body.body.getAngle());
-                lastTouchedX = currentTouchedX;
-            }
+        if (prefs.isGravityEnabled()) {
+            b2body.body.setTransform(b2body.body.getPosition().x + controller.getAcceleration().y, b2body.body.getPosition().y, b2body.body.getAngle());
         } else {
-            lastTouchedX = 0;
+            if (controller.isTouched()) {
+                if (lastTouchedX == 0) {
+                    lastTouchedX = controller.getTouchedPosition().x;
+                } else {
+                    float currentTouchedX = controller.getTouchedPosition().x;
+                    float offset = currentTouchedX - lastTouchedX;
+                    b2body.body.setTransform(b2body.body.getPosition().x + offset, b2body.body.getPosition().y, b2body.body.getAngle());
+                    lastTouchedX = currentTouchedX;
+                }
+            } else {
+                lastTouchedX = 0;
+            }
         }
 
         if (player.timeSinceLastShot >= player.shootDelay) {

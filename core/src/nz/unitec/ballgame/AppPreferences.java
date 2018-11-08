@@ -8,6 +8,7 @@ public class AppPreferences {
     private static final String PREF_MUSIC_ENABLED = "music.enabled";
     private static final String PREF_SOUND_ENABLED = "sound.enabled";
     private static final String PREF_SOUND_VOL = "sound";
+    private static final String PREF_CONTROL_GRAVITY = "gravity";
     private static final String PREFS_NAME = "BallGame";
 
     private BallGame parent;
@@ -63,6 +64,16 @@ public class AppPreferences {
     public void setSoundVolume(float volume) {
         Preferences prefs = getPrefs();
         prefs.putFloat(PREF_SOUND_VOL, volume);
+        prefs.flush();
+    }
+
+    public boolean isGravityEnabled() {
+        return getPrefs().getBoolean(PREF_CONTROL_GRAVITY, true);
+    }
+
+    public void setGravityEnabled(boolean gravityEnabled) {
+        Preferences prefs = getPrefs();
+        prefs.putBoolean(PREF_CONTROL_GRAVITY, gravityEnabled);
         prefs.flush();
     }
 }

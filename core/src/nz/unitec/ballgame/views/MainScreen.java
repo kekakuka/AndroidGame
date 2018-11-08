@@ -62,7 +62,7 @@ public class MainScreen implements Screen {
         engine.addSystem(new PhysicsDebugSystem(ballFactory.world, renderingSystem.getCamera()));
         engine.addSystem(new CollisionSystem(ballFactory));
 //        engine.addSystem(new SteeringSystem());
-        engine.addSystem(new PlayerControlSystem(controller, ballFactory));
+        engine.addSystem(new PlayerControlSystem(controller, ballFactory, parent.preferences));
         player = ballFactory.createPlayer(cam);
         engine.addSystem(new ScoreSystem(ballFactory, sb));
         engine.addSystem(new EnemySystem(ballFactory));

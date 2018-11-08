@@ -134,4 +134,31 @@ public class KeyboardController implements InputProcessor {
         this.cam.unproject(touchPos);
         return new Vector2(touchPos.x, touchPos.y);
     }
+
+    public Vector2 getAcceleration() {
+        float mSensorX = 0;
+        float mSensorY = 0;
+        switch (Gdx.input.getRotation()) {
+            case 0:
+                mSensorX = Gdx.input.getAccelerometerX();
+                mSensorY = Gdx.input.getAccelerometerY();
+            case 90:
+                mSensorX = Gdx.input.getAccelerometerY();
+                mSensorY = -Gdx.input.getAccelerometerX();
+                break;
+            case 180:
+                mSensorX = -Gdx.input.getAccelerometerX();
+                mSensorY = -Gdx.input.getAccelerometerY();
+                break;
+            case 270:
+                mSensorX = Gdx.input.getAccelerometerY();
+                mSensorY = -Gdx.input.getAccelerometerX();
+                break;
+        }
+        mSensorX = Gdx.input.getAccelerometerY();
+        mSensorY = -Gdx.input.getAccelerometerX();
+        Vector2 acceleration = new Vector2(mSensorX, mSensorY);
+        acceleration.scl(0.3f);
+        return acceleration;
+    }
 }

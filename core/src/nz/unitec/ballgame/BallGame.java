@@ -21,7 +21,7 @@ public class BallGame extends Game {
     private MenuScreen menuScreen;
     private MainScreen mainScreen;
     private EndScreen endScreen;
-    private AppPreferences preferences;
+    public AppPreferences preferences;
     public B2dAssetManager assMan = new B2dAssetManager();
     public Music bgMusic;
 
