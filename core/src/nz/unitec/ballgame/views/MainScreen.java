@@ -42,16 +42,18 @@ public class MainScreen implements Screen {
      */
     public MainScreen(BallGame ballGame) {
         parent = ballGame;
-        controller = new KeyboardController();
+
         engine = new PooledEngine();
         ballFactory = new BallFactory(engine, parent.assMan);
 
         sb = new SpriteBatch();
         RenderingSystem renderingSystem = new RenderingSystem(sb);
         cam = renderingSystem.getCamera();
+
 //		ParticleEffectSystem particleSystem = new ParticleEffectSystem(sb,cam);
         sb.setProjectionMatrix(cam.combined);
 
+        controller = new KeyboardController(cam);
         engine.addSystem(new AnimationSystem());
         engine.addSystem(new PhysicsSystem(ballFactory.world));
         engine.addSystem(renderingSystem);

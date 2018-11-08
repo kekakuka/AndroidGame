@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import nz.unitec.ballgame.BallGame;
 import nz.unitec.ballgame.tools.DFUtils;
@@ -51,7 +52,7 @@ public class EndScreen implements Screen {
 		});
 		
 		// create stage and set it as input processor
-		stage = new Stage(new ScreenViewport());
+		stage = new Stage(new StretchViewport(BallGame.WIDTH, BallGame.HEIGHT));
 		Gdx.input.setInputProcessor(stage); 
 		
 		// create table to layout iutems we will add
@@ -63,27 +64,25 @@ public class EndScreen implements Screen {
 		//create a Labels showing the score and some credits
 		Label labelScore = new Label("You score was "+parent.lastScore+"", skin);
 		Label labelCredits = new Label("Credits:", skin);
-		Label labelCredits1 = new Label("Game Design by", skin);
-		Label labelCredits2 = new Label("Three guys", skin);
-		Label labelCredits3 = new Label("Art Design by", skin);
-		Label labelCredits4 = new Label("Random stuff off the internet", skin);
+		Label labelCredits1 = new Label("Shichang Qi", skin);
+		Label labelCredits2 = new Label("Lei Li", skin);
+		Label labelCredits3 = new Label("Yuyue Wang", skin);
 		
 		// add items to table
-		table.add(labelScore).colspan(2);
+		table.add(labelScore);
+		table.row().padTop(20);
+		table.add(labelCredits);
 		table.row().padTop(10);
-		table.add(labelCredits).colspan(2);
+		table.add(labelCredits1);
 		table.row().padTop(10);
-		table.add(labelCredits1).uniformX().align(Align.left);
-		table.add(labelCredits2).uniformX().align(Align.left);
+		table.add(labelCredits2);
 		table.row().padTop(10);
-		table.add(labelCredits3).uniformX().align(Align.left);
-		table.add(labelCredits4).uniformX().align(Align.left);
+		table.add(labelCredits3);
 		table.row().padTop(50);
 		table.add(menuButton).colspan(2);
 		
 		//add table to stage
 		stage.addActor(table);
-
 	}
 
 	@Override

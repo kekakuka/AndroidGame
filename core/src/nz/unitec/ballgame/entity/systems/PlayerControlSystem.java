@@ -6,7 +6,6 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 
 import nz.unitec.ballgame.controller.KeyboardController;
 import nz.unitec.ballgame.entity.components.B2dBodyComponent;
@@ -14,7 +13,6 @@ import nz.unitec.ballgame.entity.components.BulletComponent;
 import nz.unitec.ballgame.entity.components.PlayerComponent;
 import nz.unitec.ballgame.entity.components.StateComponent;
 import nz.unitec.ballgame.tools.BallFactory;
-import nz.unitec.ballgame.tools.DFUtils;
 
 public class PlayerControlSystem extends IteratingSystem {
 
@@ -24,6 +22,7 @@ public class PlayerControlSystem extends IteratingSystem {
     ComponentMapper<StateComponent> sm;
     KeyboardController controller;
 
+    private float lastTouchedX = 0;
 
     @SuppressWarnings("unchecked")
     public PlayerControlSystem(KeyboardController keyCon, BallFactory ballFactory) {
@@ -74,6 +73,19 @@ public class PlayerControlSystem extends IteratingSystem {
         }
         if (controller.right) {
             b2body.body.setLinearVelocity(MathUtils.lerp(b2body.body.getLinearVelocity().x, 30f, 1f), b2body.body.getLinearVelocity().y);
+        }
+
+        if (controller.isTouched()) {
+            if (lastTouchedX == 0) {
+                lastTouchedX = controller.getTouchedPosition().x;
+            } else {
+                float currentTouchedX = controller.getTouchedPosition().x;
+                float offset = currentTouchedX - lastTouchedX;
+                b2body.body.setTransform(b2body.body.getPosition().x + offset, b2body.body.getPosition().y, b2body.body.getAngle());
+                lastTouchedX = currentTouchedX;
+            }
+        } else {
+            lastTouchedX = 0;
         }
 
         if (player.timeSinceLastShot >= player.shootDelay) {
