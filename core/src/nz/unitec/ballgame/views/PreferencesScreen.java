@@ -121,25 +121,26 @@ public class PreferencesScreen implements Screen{
 		});
 		
 		titleLabel = new Label( "Preferences", skin );
+		titleLabel.setFontScale(2.0f);
 		volumeMusicLabel = new Label( "Music Volume", skin );
 		volumeSoundLabel = new Label( "Sound Volume", skin );
 		musicOnOffLabel = new Label( "Music", skin );
 		soundOnOffLabel = new Label( "Sound Effect", skin );
 		
 		table.add(titleLabel).colspan(2);
-		table.row().pad(10,0,0,10);
+		table.row().pad(40,0,0,10);
 		table.add(volumeMusicLabel).left();
 		table.add(volumeMusicSlider);
-		table.row().pad(10,0,0,10);
+		table.row().pad(20,0,0,10);
 		table.add(musicOnOffLabel).left();
 		table.add(musicCheckbox);
-		table.row().pad(10,0,0,10);
+		table.row().pad(20,0,0,10);
 		table.add(volumeSoundLabel).left();
 		table.add(soundMusicSlider);
-		table.row().pad(10,0,0,10);
+		table.row().pad(20,0,0,10);
 		table.add(soundOnOffLabel).left();
 		table.add(soundEffectsCheckbox);
-		table.row().pad(10,0,0,10);
+		table.row().pad(50,0,0,10);
 		table.add(backButton).colspan(2);
 
 	}

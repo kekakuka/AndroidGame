@@ -1,11 +1,13 @@
 package nz.unitec.ballgame.loader;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.BitmapFontLoader;
 import com.badlogic.gdx.assets.loaders.ParticleEffectLoader;
 import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -26,6 +28,10 @@ public class B2dAssetManager {
     // Music
     public static final String playingSong = "music/bg.mp3";
 
+    // Fonts
+    public static final String scoreFont = "fonts/score.fnt";
+    public static final String scoreFontImage = "fonts/score.png";
+
     // Skin
     public static final String skin = "skin/glassy-ui.json";
     static final String skinAtlas = "skin/glassy-ui.atlas";
@@ -34,6 +40,7 @@ public class B2dAssetManager {
     public static final String smokeEffect = "particles/smoke.pe";
     public static final String waterEffect = "particles/water.pe";
     public static final String fireEffect = "particles/fire.pe";
+
 
     public void queueAddImages() {
         manager.load(playerImage, Texture.class);
@@ -61,7 +68,7 @@ public class B2dAssetManager {
     }
 
     public void queueAddFonts() {
-
+        manager.load(scoreFont, BitmapFont.class);
     }
 
     public void queueAddParticleEffects() {

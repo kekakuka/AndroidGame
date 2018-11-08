@@ -57,11 +57,11 @@ public class EndScreen implements Screen {
 		// create table to layout iutems we will add
 		Table table = new Table();
 		table.setFillParent(true);
-        table.setDebug(true);
+//        table.setDebug(true);
         table.setBackground(new TiledDrawable(background));
 		
 		//create a Labels showing the score and some credits
-		Label labelScore = new Label("You score was "+parent.lastScore+" Meters", skin);
+		Label labelScore = new Label("You score was "+parent.lastScore+"", skin);
 		Label labelCredits = new Label("Credits:", skin);
 		Label labelCredits1 = new Label("Game Design by", skin);
 		Label labelCredits2 = new Label("Three guys", skin);
@@ -94,7 +94,6 @@ public class EndScreen implements Screen {
 		
 		stage.act();
 		stage.draw();
-		//parent.changeScreen(Box2DTutorial.MENU);
 	}
 
 	@Override

@@ -25,8 +25,9 @@ public class BallGame extends Game {
     public B2dAssetManager assMan = new B2dAssetManager();
     public Music bgMusic;
 
-    public final static int WIDTH = 720;
-    public final static int HEIGHT = 480;
+    public final static int WIDTH = 480; //
+    public final static int HEIGHT = 720;
+//    public final static int HEIGHT = Gdx.graphics.getHeight() * (Gdx.graphics.getWidth() / BallGame.WIDTH); // 720;
 
     public final static int MENU = 0;
     public final static int PREFERENCES = 1;
