@@ -14,6 +14,7 @@ import nz.unitec.ballgame.views.LoadingScreen;
 import nz.unitec.ballgame.views.MainScreen;
 import nz.unitec.ballgame.views.MenuScreen;
 import nz.unitec.ballgame.views.PreferencesScreen;
+import nz.unitec.ballgame.views.ScoreScreen;
 
 public class BallGame extends Game {
     private LoadingScreen loadingScreen;
@@ -21,6 +22,7 @@ public class BallGame extends Game {
     private MenuScreen menuScreen;
     private MainScreen mainScreen;
     private EndScreen endScreen;
+    private ScoreScreen scoreScreen;
     public AppPreferences preferences;
     public B2dAssetManager assMan = new B2dAssetManager();
     public Music bgMusic;
@@ -33,6 +35,7 @@ public class BallGame extends Game {
     public final static int PREFERENCES = 1;
     public final static int APPLICATION = 2;
     public final static int ENDGAME = 3;
+    public final static int SCORE = 4;
 
     public int lastScore = 0;
 
@@ -78,6 +81,10 @@ public class BallGame extends Game {
             case ENDGAME:
                 if (endScreen == null) endScreen = new EndScreen(this);
                 this.setScreen(endScreen);
+                break;
+            case SCORE:
+                if (scoreScreen == null) scoreScreen = new ScoreScreen(this);
+                this.setScreen(scoreScreen);
                 break;
         }
     }

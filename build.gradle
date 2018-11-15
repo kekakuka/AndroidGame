@@ -105,7 +105,6 @@ project(":core") {
         implementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         implementation "com.badlogicgames.gdx:gdx-ai:$aiVersion"
         implementation "com.badlogicgames.ashley:ashley:$ashleyVersion"
-        
     }
 }
 
