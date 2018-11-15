@@ -39,6 +39,12 @@ public class BallGame extends Game {
 
     public int lastScore = 0;
 
+    NativeDB nativeDB;
+
+    public BallGame(NativeDB nativeDB){
+        this.nativeDB = nativeDB;
+    }
+
     @Override
     public void create() {
         loadingScreen = new LoadingScreen(this);
@@ -56,6 +62,11 @@ public class BallGame extends Game {
         if (preferences.isMusicEnabled()) {
             bgMusic.play();
         }
+
+
+        // Place holder. Probably here to do initDB or later in ENDGAME.
+        nativeDB.initDB();
+
     }
 
     public void changeScreen(int screen) {
