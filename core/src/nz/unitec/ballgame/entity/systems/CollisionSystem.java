@@ -115,6 +115,44 @@ public class CollisionSystem extends IteratingSystem {
                     System.out.println("Enemy: collidedEntity.type == null");
                 }
             }
+        } else if(thisType.type == TypeComponent.BULLET){
+            if (collidedEntity != null) {
+                TypeComponent type = collidedEntity.getComponent(TypeComponent.class);
+                if (type != null) {
+                    switch (type.type) {
+                        case TypeComponent.PLAYER:
+                            System.out.println("bullet shoot player");
+                            break;
+                        case TypeComponent.ENEMY:
+                            EnemyComponent enemy = Mapper.enemyCom.get(collidedEntity);
+                            BulletComponent bullet = Mapper.bulletCom.get(entity);
+                            if (bullet.owner != BulletComponent.Owner.ENEMY) { // can't shoot own team
+                                bullet.isDead = true;
+                                enemy.isDead = true;
+                                System.out.println("bullet soot enemy");
+                            }
+                            break;
+                        case TypeComponent.SCENERY:
+                            System.out.println("bullet shoot scenery");
+                            break;
+                        case TypeComponent.SPRING:
+                            System.out.println("bullet shoot spring");
+                            break;
+                        case TypeComponent.OTHER:
+                            System.out.println("bullet shoot other");
+                            break;
+                        case TypeComponent.BULLET:
+                            System.out.println("bullet shoot bullet");
+                            break;
+
+                        default:
+                            System.out.println("No matching type found");
+                    }
+                    cc.collisionEntity = null; // collision handled reset component
+                } else {
+                    System.out.println("Bullet: collidedEntity.type == null");
+                }
+            }
         } else {
             cc.collisionEntity = null;
         }

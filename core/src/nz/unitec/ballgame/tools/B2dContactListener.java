@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
 import nz.unitec.ballgame.entity.components.CollisionComponent;
+import nz.unitec.ballgame.entity.components.Mapper;
 
 public class B2dContactListener implements ContactListener {
 
@@ -16,20 +17,23 @@ public class B2dContactListener implements ContactListener {
 	
 	@Override
 	public void beginContact(Contact contact) {
-		//System.out.println("Contact");
+		System.out.println("begin Contact...");
 		Fixture fa = contact.getFixtureA();
 		Fixture fb = contact.getFixtureB();
 		//System.out.println(fa.getBody().getType()+" has hit "+ fb.getBody().getType());
 		
 		if(fa.getBody().getUserData() instanceof Entity){
 			Entity ent = (Entity) fa.getBody().getUserData();
+			System.out.println("begin Contact..." + Mapper.typeCom.get(ent).type);
 			entityCollision(ent,fb);
 			return;
 		}else if(fb.getBody().getUserData() instanceof Entity){
 			Entity ent = (Entity) fb.getBody().getUserData();
+			System.out.println("begin Contact..." + Mapper.typeCom.get(ent).type);
 			entityCollision(ent,fa);
 			return;
 		}
+		System.out.println("begin Contact---");
 	}
 
 	private void entityCollision(Entity ent, Fixture fb) {
