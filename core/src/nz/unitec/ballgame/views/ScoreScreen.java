@@ -82,11 +82,11 @@ public class ScoreScreen implements Screen{
 
         titleLabel = new Label( "Ranks", skin );
         titleLabel.setFontScale(2.0f);
-        R1 = new Label( "1", skin );
-        R2 = new Label( "2", skin );
-        R3 = new Label( "3", skin );
-        R4 = new Label( "4", skin );
-        R5 = new Label( "5", skin );
+        R1 = new Label( "No.1", skin );
+        R2 = new Label( "No.2", skin );
+        R3 = new Label( "No.3", skin );
+        R4 = new Label( "No.4", skin );
+        R5 = new Label( "No.5", skin );
 
         int[] scores = parent.nativeDB.getScores();
 

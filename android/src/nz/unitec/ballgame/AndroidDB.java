@@ -41,7 +41,7 @@ public class AndroidDB implements NativeDB{
 //            }
 //        }
         for(int i=0; i<5; i++){
-            Cursor cursor = db.query ("score",null,null,null,null,null,null);
+            Cursor cursor = db.query ("score",null,null,null,null,null,"score DESC");
             if(cursor.moveToFirst()){
                 if(cursor.move(i)){
                     scores[i] = cursor.getInt(1);
