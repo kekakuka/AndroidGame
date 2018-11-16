@@ -58,7 +58,7 @@ public class BallFactory {
 
         int wallWidth = WALL_WIDTH;
         int wallHeight = RenderingSystem.FRUSTUM_HEIGHT;
-        wallTex = DFUtils.makeTextureRegion(wallWidth, wallHeight, "FF9900FF"); //TODO make some damn images for this stuff
+        wallTex = DFUtils.makeTextureRegion(wallWidth, wallHeight, "1F5F9FFF"); //TODO make some damn images for this stuff
 
         floorTex = atlas.findRegion("reallybadlydrawndirt");
         floorTex.setRegionHeight(FLOOR_HEIGHT);
@@ -139,13 +139,13 @@ public class BallFactory {
         TypeComponent type = engine.createComponent(TypeComponent.class);
 
 //        position.position.set(-RenderingSystem.FRUSTUM_WIDTH / 2,RenderingSystem.FRUSTUM_HEIGHT / 2,0);
-        position.position.set(RenderingSystem.FRUSTUM_WIDTH / 2, +FLOOR_OFFSET_Y, 0);
+        position.position.set(RenderingSystem.FRUSTUM_WIDTH / 2, +FLOOR_OFFSET_Y-10, 0);
 //        position.position.set(20,0,0);
         texture.region = floorTex;
         texture.offsetX = 2.5f;
         type.type = TypeComponent.SCENERY;
 //        b2dbody.body = bodyFactory.makeBoxPolyBody(20,-16, 46, 32, BodyFactory.STONE, BodyDef.BodyType.StaticBody);
-        b2dbody.body = bodyFactory.makeBoxPolyBody(RenderingSystem.FRUSTUM_WIDTH / 2, +FLOOR_OFFSET_Y, RenderingSystem.FRUSTUM_WIDTH, FLOOR_HEIGHT, BodyFactory.STONE, BodyDef.BodyType.StaticBody);
+        b2dbody.body = bodyFactory.makeBoxPolyBody(RenderingSystem.FRUSTUM_WIDTH / 2, +FLOOR_OFFSET_Y-10, RenderingSystem.FRUSTUM_WIDTH, FLOOR_HEIGHT, BodyFactory.STONE, BodyDef.BodyType.StaticBody);
 
 
         entity.add(b2dbody);
@@ -201,7 +201,7 @@ public class BallFactory {
 //        SteeringComponent scom = engine.createComponent(SteeringComponent.class);
 
         player.cam = cam;
-        b2dbody.body = bodyFactory.makeCirclePolyBody(RenderingSystem.FRUSTUM_WIDTH / 2, PLAYER_OFFSET_Y, PLAYER_RADIUS, BodyFactory.STONE, BodyDef.BodyType.DynamicBody, true);
+        b2dbody.body = bodyFactory.makeCirclePolyBody(RenderingSystem.FRUSTUM_WIDTH / 2, PLAYER_OFFSET_Y-10, PLAYER_RADIUS, BodyFactory.STONE, BodyDef.BodyType.DynamicBody, true);
         b2dbody.body.setSleepingAllowed(false); // don't allow unit to sleep or it wil sleep through events if stationary too long
         // set object position (x,y,z) z used to define draw order 0 first drawn
 //        Animation anim = new Animation(0.1f, atlas.findRegions("flame_a"));
@@ -212,7 +212,7 @@ public class BallFactory {
 //        animCom.animations.put(StateComponent.STATE_FALLING, anim);
 //        animCom.animations.put(StateComponent.STATE_HIT, anim);
 
-        position.position.set(RenderingSystem.FRUSTUM_WIDTH / 2, PLAYER_OFFSET_Y, 0);
+        position.position.set(RenderingSystem.FRUSTUM_WIDTH / 2, PLAYER_OFFSET_Y-10, 0);
         texture.region = atlas.findRegion("player");
         texture.offsetY = 0.5f;
         type.type = TypeComponent.PLAYER;
@@ -373,12 +373,12 @@ public class BallFactory {
         TextureComponent texture = engine.createComponent(TextureComponent.class);
         TypeComponent type = engine.createComponent(TypeComponent.class);
 
-        position.position.set(23, 17, -10);
-        texture.region = atlas.findRegion("skybg");
+        position.position.set(223, 357, -10);
+        texture.region = atlas.findRegion("reallygoodback");
 
         type.type = TypeComponent.SCENERY;
 
-        b2dbody.body = bodyFactory.makeBoxPolyBody(223, 17,RenderingSystem.FRUSTUM_WIDTH, RenderingSystem.FRUSTUM_HEIGHT, BodyFactory.STONE, BodyDef.BodyType.StaticBody,true);
+        b2dbody.body = bodyFactory.makeBoxPolyBody(223, 357,RenderingSystem.FRUSTUM_WIDTH*2, RenderingSystem.FRUSTUM_HEIGHT*2, BodyFactory.STONE, BodyDef.BodyType.StaticBody,true);
 
         bodyFactory.makeAllFixturesSensors(b2dbody.body);
 

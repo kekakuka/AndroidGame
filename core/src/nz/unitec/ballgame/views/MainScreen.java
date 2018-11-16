@@ -86,6 +86,7 @@ public class MainScreen implements Screen {
         player = ballFactory.createPlayer(cam);
         ballFactory.createFloor();
         ballFactory.createWalls();
+        ballFactory.createBackground();
 
         // reset controller controls (fixes bug where controller stuck on directrion if died in that position)
         controller.left = false;

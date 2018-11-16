@@ -503,3 +503,15 @@ reallybadlydrawndirt
   orig: 644, 520
   offset: 0, 0
   index: -1
+
+game18.png
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: yes
+reallygoodback
+  rotate: false
+  xy: 1, 1
+  size: 599, 959
+  orig: 599, 959
+  offset: 0, 0
+  index: -1
