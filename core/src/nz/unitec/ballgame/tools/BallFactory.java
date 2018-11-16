@@ -13,6 +13,8 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
+import java.util.Random;
+
 import nz.unitec.ballgame.BallGame;
 import nz.unitec.ballgame.entity.components.AnimationComponent;
 import nz.unitec.ballgame.entity.components.B2dBodyComponent;
@@ -38,7 +40,6 @@ public class BallFactory {
     private final int FLOOR_OFFSET_Y = -10;
     private final int PLAYER_RADIUS = 35;
     private final int PLAYER_OFFSET_Y = FLOOR_OFFSET_Y + FLOOR_HEIGHT + PLAYER_RADIUS / 2 - 30;
-
     private TextureRegion wallTex;
     private TextureRegion floorTex;
     private TextureRegion enemyTex;
@@ -49,6 +50,7 @@ public class BallFactory {
     private OpenSimplexNoise openSim;
     public Entity player;
     public B2dAssetManager assman;
+    private Random  random=new Random();;
 
     public BallFactory(PooledEngine en, B2dAssetManager assMan) {
         engine = en;
@@ -62,11 +64,11 @@ public class BallFactory {
         floorTex.setRegionHeight(FLOOR_HEIGHT);
         floorTex.setRegionWidth(RenderingSystem.FRUSTUM_WIDTH);
 
-        enemyTex = atlas.findRegion("waterdrop");
+        //enemyTex = atlas.findRegion("enemy");
         this.assman = assMan;
 
         waterTex = atlas.findRegion("water");
-        bulletTex = DFUtils.makeTextureRegion(10, 10, "444444FF");
+       bulletTex = DFUtils.makeTextureRegion(10, 10, "444444FF");
         platformTex = atlas.findRegion("platform");
         world = new World(new Vector2(0, -9.8f), false);
         world.setContactListener(new B2dContactListener());
@@ -78,7 +80,7 @@ public class BallFactory {
 //        pem.addParticleEffect(ParticleEffectManager.FIRE, assMan.manager.get("particles/fire.pe",ParticleEffect.class),1f/128f);
 //        pem.addParticleEffect(ParticleEffectManager.WATER, assMan.manager.get("particles/water.pe",ParticleEffect.class),1f/16f);
 //        pem.addParticleEffect(ParticleEffectManager.SMOKE, assMan.manager.get("particles/smoke.pe",ParticleEffect.class),1f/64f);
-
+        this.createBackground();
     }
 
     /**
@@ -108,8 +110,13 @@ public class BallFactory {
             // only make enemies above level 5 (stops instant deaths)
             if (currentLevel > 5) {
                 if (genNForL(i * 300, currentLevel) > -0.2f) {
+
+                    TextureRegion    enemy;
+
+;                   int enemyUnmber=  random.nextInt(18)+101;
+                    enemy=atlas.findRegion(String.valueOf(enemyUnmber));
                     // add an enemy
-                    createEnemy(enemyTex, genNForL(i * 100, currentLevel) * (BallGame.WIDTH / 2 - offset) + BallGame.WIDTH / 2, BallGame.HEIGHT);
+                    createEnemy(enemy, genNForL(i * 100, currentLevel) * (BallGame.WIDTH / 2 - offset) + BallGame.WIDTH / 2, BallGame.HEIGHT);
                 }
             }
 
@@ -186,7 +193,7 @@ public class BallFactory {
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
         TransformComponent position = engine.createComponent(TransformComponent.class);
         TextureComponent texture = engine.createComponent(TextureComponent.class);
-        AnimationComponent animCom = engine.createComponent(AnimationComponent.class);
+//        AnimationComponent animCom = engine.createComponent(AnimationComponent.class);
         PlayerComponent player = engine.createComponent(PlayerComponent.class);
         CollisionComponent colComp = engine.createComponent(CollisionComponent.class);
         TypeComponent type = engine.createComponent(TypeComponent.class);
@@ -197,13 +204,13 @@ public class BallFactory {
         b2dbody.body = bodyFactory.makeCirclePolyBody(RenderingSystem.FRUSTUM_WIDTH / 2, PLAYER_OFFSET_Y, PLAYER_RADIUS, BodyFactory.STONE, BodyDef.BodyType.DynamicBody, true);
         b2dbody.body.setSleepingAllowed(false); // don't allow unit to sleep or it wil sleep through events if stationary too long
         // set object position (x,y,z) z used to define draw order 0 first drawn
-        Animation anim = new Animation(0.1f, atlas.findRegions("flame_a"));
-        //anim.setPlayMode(Animation.PlayMode.LOOP);
-        animCom.animations.put(StateComponent.STATE_NORMAL, anim);
-        animCom.animations.put(StateComponent.STATE_MOVING, anim);
-        animCom.animations.put(StateComponent.STATE_JUMPING, anim);
-        animCom.animations.put(StateComponent.STATE_FALLING, anim);
-        animCom.animations.put(StateComponent.STATE_HIT, anim);
+//        Animation anim = new Animation(0.1f, atlas.findRegions("flame_a"));
+//        //anim.setPlayMode(Animation.PlayMode.LOOP);
+//        animCom.animations.put(StateComponent.STATE_NORMAL, anim);
+//        animCom.animations.put(StateComponent.STATE_MOVING, anim);
+//        animCom.animations.put(StateComponent.STATE_JUMPING, anim);
+//        animCom.animations.put(StateComponent.STATE_FALLING, anim);
+//        animCom.animations.put(StateComponent.STATE_HIT, anim);
 
         position.position.set(RenderingSystem.FRUSTUM_WIDTH / 2, PLAYER_OFFSET_Y, 0);
         texture.region = atlas.findRegion("player");
@@ -217,7 +224,7 @@ public class BallFactory {
         entity.add(b2dbody);
         entity.add(position);
         entity.add(texture);
-        entity.add(animCom);
+      //  entity.add(animCom);
         entity.add(player);
         entity.add(colComp);
         entity.add(type);
@@ -366,10 +373,12 @@ public class BallFactory {
         TextureComponent texture = engine.createComponent(TextureComponent.class);
         TypeComponent type = engine.createComponent(TypeComponent.class);
 
-        position.position.set(46, 32, -10);
+        position.position.set(23, 17, -10);
         texture.region = atlas.findRegion("skybg");
+
         type.type = TypeComponent.SCENERY;
-        b2dbody.body = bodyFactory.makeBoxPolyBody(23, 17, 100, 100, BodyFactory.STONE, BodyDef.BodyType.StaticBody);
+
+        b2dbody.body = bodyFactory.makeBoxPolyBody(223, 17,RenderingSystem.FRUSTUM_WIDTH, RenderingSystem.FRUSTUM_HEIGHT, BodyFactory.STONE, BodyDef.BodyType.StaticBody,true);
 
         bodyFactory.makeAllFixturesSensors(b2dbody.body);
 

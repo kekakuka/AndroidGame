@@ -73,11 +73,130 @@ star_particle
   orig: 64, 64
   offset: 0, 0
   index: -1
-enemy
+101
   rotate: false
-  xy: 1, 19
-  size: 32, 32
-  orig: 32, 32
+  xy: 514, 79
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+102
+  rotate: false
+  xy: 574, 79
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+103
+  rotate: false
+  xy: 634, 79
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+104
+  rotate: false
+  xy: 694, 79
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+105
+  rotate: false
+  xy: 754, 79
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+106
+  rotate: false
+  xy: 814, 79
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+107
+  rotate: false
+  xy: 514, 128
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+108
+  rotate: false
+  xy: 574, 128
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+109
+  rotate: false
+  xy: 634, 128
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+110
+  rotate: false
+  xy: 694, 128
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+111
+  rotate: false
+  xy: 754, 128
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+112
+  rotate: false
+  xy: 814, 128
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+113
+  rotate: false
+  xy: 514, 177
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+114
+  rotate: false
+  xy: 574, 177
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+115
+  rotate: false
+  xy: 634, 177
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+116
+  rotate: false
+  xy: 694, 177
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+117
+  rotate: false
+  xy: 754, 177
+  size: 37, 37
+  orig: 37, 37
+  offset: 0, 0
+  index: -1
+118
+  rotate: false
+  xy: 814, 177
+  size: 37, 37
+  orig: 37, 37
   offset: 0, 0
   index: -1
 particle
@@ -96,9 +215,9 @@ platform
   index: -1
 player
   rotate: false
-  xy: 455, 277
-  size: 32, 32
-  orig: 32, 32
+  xy: 929, 2
+  size: 82, 82
+  orig: 82, 82
   offset: 0, 0
   index: -1
 pre_particle
