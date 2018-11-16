@@ -47,7 +47,7 @@ public class ScoreScreen implements Screen{
     public ScoreScreen(BallGame ballGame){
         parent = ballGame;
         /// create stage and set it as input processor
-        stage = new Stage(new ScreenViewport());
+        stage = new Stage(new StretchViewport(BallGame.WIDTH, BallGame.HEIGHT));
 
         parent.assMan.queueAddSkin();
         parent.assMan.manager.finishLoading();
@@ -69,9 +69,6 @@ public class ScoreScreen implements Screen{
         //table.setDebug(true);
         table.setBackground(new TiledDrawable(background));
         stage.addActor(table);
-
-        // temporary until we have asset manager in
-        Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
 
         // return to main screen button
         final TextButton backButton = new TextButton("Back", skin, "small");
