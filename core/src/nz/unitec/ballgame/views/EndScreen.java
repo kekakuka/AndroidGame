@@ -90,7 +90,9 @@ public class EndScreen implements Screen {
 		// clear the screen ready for next set of images to be drawn
 		Gdx.gl.glClearColor(0f, 0f, 0f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+
+		parent.nativeDB.setScore(parent.lastScore);
+
 		stage.act();
 		stage.draw();
 	}

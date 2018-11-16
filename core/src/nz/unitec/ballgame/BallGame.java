@@ -39,7 +39,7 @@ public class BallGame extends Game {
 
     public int lastScore = 0;
 
-    NativeDB nativeDB;
+    public NativeDB nativeDB;
 
     public BallGame(NativeDB nativeDB){
         this.nativeDB = nativeDB;

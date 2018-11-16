@@ -37,6 +37,11 @@ public class ScoreScreen implements Screen{
     private Label R4;
     private Label R5;
 
+    private Label Ra;
+    private Label Rb;
+    private Label Rc;
+    private Label Rd;
+    private Label Re;
 
 
     public ScoreScreen(BallGame ballGame){
@@ -86,25 +91,35 @@ public class ScoreScreen implements Screen{
         R4 = new Label( "4", skin );
         R5 = new Label( "5", skin );
 
+        int[] scores = parent.nativeDB.getScores();
+
+        Ra = new Label(Integer.toString(scores[0]),skin);
+        Rb = new Label(Integer.toString(scores[1]),skin);
+        Rc = new Label(Integer.toString(scores[2]),skin);
+        Rd = new Label(Integer.toString(scores[3]),skin);
+        Re = new Label(Integer.toString(scores[4]),skin);
+
         table.add(titleLabel).colspan(2);
         table.row().pad(40,0,0,10);
 
-        table.add(R1);
+        table.add(R1).left();
+        table.add(Ra);
         table.row().pad(20,0,0,10);
 
-        table.add(R2);
+        table.add(R2).left();
+        table.add(Rb);
         table.row().pad(20,0,0,10);
 
-        table.add(R3);
-
+        table.add(R3).left();
+        table.add(Rc);
         table.row().pad(20,0,0,10);
 
-        table.add(R4);
-
+        table.add(R4).left();
+        table.add(Rd);
         table.row().pad(20,0,0,10);
 
-        table.add(R5);
-
+        table.add(R5).left();
+        table.add(Re);
         table.row().pad(50,0,0,10);
         table.add(backButton).colspan(2);
     }
