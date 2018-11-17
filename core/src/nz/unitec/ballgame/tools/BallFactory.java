@@ -52,7 +52,10 @@ public class BallFactory {
     public B2dAssetManager assman;
     private Random  random=new Random();;
 
-    public BallFactory(PooledEngine en, B2dAssetManager assMan) {
+    private static final int MODE_EASY = 1;
+    private static final int MODE_HARD = 2;
+
+    public BallFactory(PooledEngine en, B2dAssetManager assMan, int i) {
         engine = en;
         this.atlas = assMan.manager.get("images/game.atlas", TextureAtlas.class);
 
@@ -70,7 +73,13 @@ public class BallFactory {
         waterTex = atlas.findRegion("water");
        bulletTex = DFUtils.makeTextureRegion(10, 10, "444444FF");
         platformTex = atlas.findRegion("platform");
-        world = new World(new Vector2(0, -9.8f), false);
+        if(i == MODE_EASY){
+            world = new World(new Vector2(0, -9.8f), false);
+        }else if(i == MODE_HARD){
+            world = new World(new Vector2(0, -50f), false);
+        }else{
+            world = new World(new Vector2(0, -9.8f), false);
+        }
         world.setContactListener(new B2dContactListener());
         bodyFactory = BodyFactory.getInstance(world);
 
@@ -145,7 +154,7 @@ public class BallFactory {
         texture.offsetX = 2.5f;
         type.type = TypeComponent.SCENERY;
 //        b2dbody.body = bodyFactory.makeBoxPolyBody(20,-16, 46, 32, BodyFactory.STONE, BodyDef.BodyType.StaticBody);
-        b2dbody.body = bodyFactory.makeBoxPolyBody(RenderingSystem.FRUSTUM_WIDTH / 2, +FLOOR_OFFSET_Y-10, RenderingSystem.FRUSTUM_WIDTH, FLOOR_HEIGHT, BodyFactory.STONE, BodyDef.BodyType.StaticBody);
+        b2dbody.body = bodyFactory.makeBoxPolyBody(RenderingSystem.FRUSTUM_WIDTH / 2, +FLOOR_OFFSET_Y-10, RenderingSystem.FRUSTUM_WIDTH, FLOOR_HEIGHT, BodyFactory.STEEL, BodyDef.BodyType.StaticBody);
 
 
         entity.add(b2dbody);
@@ -355,7 +364,7 @@ public class BallFactory {
 //    }
 
 
-    public void resetWorld() {
+    public void resetWorld(int i) {
         currentLevel = 0;
         openSim = new OpenSimplexNoise(MathUtils.random(2000l));
         Array<Body> bods = new Array<Body>();
@@ -363,6 +372,18 @@ public class BallFactory {
         for (Body bod : bods) {
             world.destroyBody(bod);
         }
+        world.dispose();
+        if(i == MODE_EASY){
+            world = new World(new Vector2(0, -9.8f), false);
+        }else if(i == MODE_HARD){
+            world = new World(new Vector2(0, -50f), false);
+        }else{
+            world = new World(new Vector2(0, -9.8f), false);
+        }
+        world.setContactListener(new B2dContactListener());
+        bodyFactory = BodyFactory.getInstance(world);
+
+        openSim = new OpenSimplexNoise(MathUtils.random(2000l));
     }
 
     // makes the background item

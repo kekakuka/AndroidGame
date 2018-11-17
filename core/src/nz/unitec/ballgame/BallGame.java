@@ -36,6 +36,10 @@ public class BallGame extends Game {
     public final static int APPLICATION = 2;
     public final static int ENDGAME = 3;
     public final static int SCORE = 4;
+    public final static int APPLICATION_HARD = 5;
+
+    private static final int MODE_EASY = 1;
+    private static final int MODE_HARD = 2;
 
     public int lastScore = 0;
 
@@ -82,9 +86,9 @@ public class BallGame extends Game {
             case APPLICATION:
                 // always make new game screen so game can't start midway
                 if (mainScreen == null) {
-                    mainScreen = new MainScreen(this);
+                    mainScreen = new MainScreen(this, MODE_EASY);
                 } else {
-                    mainScreen.resetWorld();
+                    mainScreen.resetWorld(MODE_EASY);
                 }
 
                 this.setScreen(mainScreen);
@@ -96,6 +100,16 @@ public class BallGame extends Game {
             case SCORE:
                 if (scoreScreen == null) scoreScreen = new ScoreScreen(this);
                 this.setScreen(scoreScreen);
+                break;
+            case APPLICATION_HARD:
+                // always make new game screen so game can't start midway
+                if (mainScreen == null) {
+                    mainScreen = new MainScreen(this, MODE_HARD);
+                } else {
+                    mainScreen.resetWorld(MODE_HARD);
+                }
+
+                this.setScreen(mainScreen);
                 break;
         }
     }

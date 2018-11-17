@@ -23,6 +23,9 @@ public class MenuScreen implements Screen{
 	private Skin skin;
 	private TextureAtlas atlas;
 	private AtlasRegion background;
+
+	private static final int MODE_EASY = 1;
+	private static final int MODE_HARD = 2;
 	
 	public MenuScreen(BallGame ballGame){
 		parent = ballGame;
@@ -56,6 +59,8 @@ public class MenuScreen implements Screen{
         
         //create buttons
         final TextButton newGame = new TextButton("New Game", skin);
+        final TextButton newHardGame = new TextButton("New Game(hard)", skin);
+
         TextButton preferences = new TextButton("Preferences", skin);
         TextButton scoreBoard = new TextButton("Score Board", skin);
         TextButton exit = new TextButton("Exit", skin);
@@ -64,9 +69,11 @@ public class MenuScreen implements Screen{
 
         table.add(newGame).fillX().uniformX();
 		table.row().pad(10, 0, 10, 0);
+        table.add(newHardGame).fillX().uniformX();
+        table.row().pad(10, 0, 10, 0);
 		table.add(preferences).fillX().uniformX();
-		table.row();
-		table.add(scoreBoard);
+        table.row().pad(10, 0, 10, 0);
+		table.add(scoreBoard).fillX().uniformX();
 		table.row().pad(10, 0, 10, 0);
 		table.add(exit).fillX().uniformX();
 		
@@ -84,6 +91,13 @@ public class MenuScreen implements Screen{
 				parent.changeScreen(BallGame.APPLICATION);
 			}
 		});
+
+        newHardGame.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                parent.changeScreen(BallGame.APPLICATION_HARD);
+            }
+        });
 		
 		preferences.addListener(new ChangeListener() {
 			@Override
