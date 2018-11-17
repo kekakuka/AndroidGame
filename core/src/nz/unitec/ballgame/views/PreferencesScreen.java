@@ -44,7 +44,7 @@ public class PreferencesScreen implements Screen{
 
 		// get images used to display loading progress
 		atlas = parent.assMan.manager.get("images/loading.atlas");
-		background = atlas.findRegion("flamebackground");
+		background = atlas.findRegion("reallygooddarkback");
 	}
 
 	@Override

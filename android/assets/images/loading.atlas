@@ -5,16 +5,16 @@ filter: MipMapLinearLinear,MipMapLinearLinear
 repeat: none
 staying-alight-logo
   rotate: false
-  xy: 1, 4
-  size: 359, 108
-  orig: 359, 108
+  xy: 601, 24
+  size: 429, 108
+  orig: 429, 108
   offset: 0, 0
   index: -1
 copyright
   rotate: false
-  xy: 362, 67
-  size: 182, 45
-  orig: 182, 45
+  xy: 352, 69
+  size: 182, 48
+  orig: 182, 48
   offset: 0, 0
   index: -1
 flamebackground
@@ -134,3 +134,52 @@ flames/flames
   orig: 200, 200
   offset: 0, 0
   index: 15
+
+
+game18.png
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: yes
+reallygoodsmallback
+  rotate: false
+  xy: 1, 1
+  size: 599, 959
+  orig: 599, 959
+  offset: 0, 0
+  index: -1
+
+game20.png
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: yes
+reallygooddarkback
+  rotate: false
+  xy: 1, 1
+  size: 599, 959
+  orig: 599, 959
+  offset: 0, 0
+  index: -1
+
+game21.png
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: yes
+reallygoodblackback
+  rotate: false
+  xy: 1, 1
+  size: 599, 959
+  orig: 599, 959
+  offset: 0, 0
+  index: -1
+
+game19.png
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: yes
+reallygoodback
+  rotate: false
+  xy: 1, 1
+  size: 1199, 1791
+  orig: 1199, 1791
+  offset: 0, 0
+  index: -1

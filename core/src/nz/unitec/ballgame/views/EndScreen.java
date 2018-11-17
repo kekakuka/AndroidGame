@@ -37,7 +37,7 @@ public class EndScreen implements Screen {
 		// get skin
 		skin = parent.assMan.manager.get("skin/glassy-ui.json");
 		atlas = parent.assMan.manager.get("images/loading.atlas");
-		background = atlas.findRegion("flamebackground");
+		background = atlas.findRegion("reallygooddarkback");
 		
 		// create button to go back to manu
 		TextButton menuButton = new TextButton("Back", skin, "small");

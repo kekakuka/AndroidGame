@@ -33,7 +33,7 @@ public class MenuScreen implements Screen{
 		parent.assMan.manager.finishLoading();
 		skin = parent.assMan.manager.get("skin/glassy-ui.json");
 		atlas = parent.assMan.manager.get("images/loading.atlas");
-		background = atlas.findRegion("flamebackground");
+		background = atlas.findRegion("reallygoodback");
 		
 	}
 

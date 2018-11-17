@@ -50,7 +50,7 @@ public class BallFactory {
     private OpenSimplexNoise openSim;
     public Entity player;
     public B2dAssetManager assman;
-    private Random  random=new Random();;
+
 
     public BallFactory(PooledEngine en, B2dAssetManager assMan) {
         engine = en;
@@ -113,8 +113,8 @@ public class BallFactory {
 
                     TextureRegion    enemy;
 
-;                   int enemyUnmber=  random.nextInt(18)+101;
-                    enemy=atlas.findRegion(String.valueOf(enemyUnmber));
+;
+                    enemy=atlas.findRegion(String.valueOf(MathUtils.random(101,118)));
                     // add an enemy
                     createEnemy(enemy, genNForL(i * 100, currentLevel) * (BallGame.WIDTH / 2 - offset) + BallGame.WIDTH / 2, BallGame.HEIGHT);
                 }

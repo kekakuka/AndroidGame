@@ -65,7 +65,7 @@ public class LoadingScreen implements Screen {
 		atlas = parent.assMan.manager.get("images/loading.atlas");
 		title = atlas.findRegion("staying-alight-logo");
 		dash = atlas.findRegion("loading-dash");
-		background = atlas.findRegion("flamebackground");
+		background = atlas.findRegion("reallygoodsmallback");
 		copyright = atlas.findRegion("copyright");
 		flameAnimation = new Animation(0.07f, atlas.findRegions("flames/flames"), PlayMode.LOOP);
 		

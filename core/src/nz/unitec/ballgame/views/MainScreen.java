@@ -33,7 +33,7 @@ public class MainScreen implements Screen {
     private PooledEngine engine;
     private BallFactory ballFactory;
 
-    //private Sound ping;
+    //private "C:\Program Files\Git\bin\bash.exe" --login -i ping;
     //private Sound boing;
     private Entity player;
 
