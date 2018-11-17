@@ -39,9 +39,10 @@ public class BallGame extends Game {
     public final static int SCORE = 4;
     public final static int APPLICATION_HARD = 5;
 
-    private static final int MODE_EASY = 1;
-    private static final int MODE_HARD = 2;
+    public static final int MODE_EASY = 1;
+    public static final int MODE_HARD = 2;
 
+    public int GAME_MODE = MODE_EASY;
     public int lastScore = 0;
 
     public NativeDB nativeDB;
@@ -101,7 +102,7 @@ public class BallGame extends Game {
                 } else {
                     mainScreen.resetWorld(MODE_EASY);
                 }
-
+                GAME_MODE = MODE_EASY;
                 this.setScreen(mainScreen);
                 break;
             case ENDGAME:
@@ -119,7 +120,7 @@ public class BallGame extends Game {
                 } else {
                     mainScreen.resetWorld(MODE_HARD);
                 }
-
+                GAME_MODE = MODE_HARD;
                 this.setScreen(mainScreen);
                 break;
         }
