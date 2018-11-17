@@ -33,18 +33,31 @@ public class MainScreen implements Screen {
     private PooledEngine engine;
     private BallFactory ballFactory;
 
+    private static final int MODE_EASY = 1;
+    private static final int MODE_HARD = 2;
+
+    //private Sound ping;
+
     //private "C:\Program Files\Git\bin\bash.exe" --login -i ping;
+
     //private Sound boing;
     private Entity player;
 
     /**
      * @param ballGame
      */
-    public MainScreen(BallGame ballGame) {
+    public MainScreen(BallGame ballGame, int i) {
         parent = ballGame;
 
         engine = new PooledEngine();
-        ballFactory = new BallFactory(engine, parent.assMan);
+
+        if(i == MODE_EASY){
+            ballFactory = new BallFactory(engine, parent.assMan, MODE_EASY);
+        }else if(i == MODE_HARD){
+            ballFactory = new BallFactory(engine, parent.assMan, MODE_HARD);
+        }else{
+            ballFactory = new BallFactory(engine, parent.assMan, MODE_EASY);
+        }
 
         sb = new SpriteBatch();
         RenderingSystem renderingSystem = new RenderingSystem(sb);
@@ -78,12 +91,35 @@ public class MainScreen implements Screen {
     }
 
     // reset world or start world again
-    public void resetWorld() {
+    public void resetWorld(int i) {
         System.out.println("Resetting world");
         engine.removeAllEntities();
-        ballFactory.resetWorld();
+        ballFactory.resetWorld(i);
 
+        sb = new SpriteBatch();
+        RenderingSystem renderingSystem = new RenderingSystem(sb);
+        cam = renderingSystem.getCamera();
+
+//		ParticleEffectSystem particleSystem = new ParticleEffectSystem(sb,cam);
+        sb.setProjectionMatrix(cam.combined);
+
+        controller = new KeyboardController(cam);
+        engine.addSystem(new AnimationSystem());
+        engine.addSystem(new PhysicsSystem(ballFactory.world));
+        engine.addSystem(renderingSystem);
+        // not a fan of splitting batch into rendering and particles but I like the separation of the systems
+//        engine.addSystem(particleSystem); // particle get drawns on top so should be placed after normal rendering
+        engine.addSystem(new PhysicsDebugSystem(ballFactory.world, renderingSystem.getCamera()));
+        engine.addSystem(new CollisionSystem(ballFactory));
+//        engine.addSystem(new SteeringSystem());
+        engine.addSystem(new PlayerControlSystem(controller, ballFactory, parent.preferences));
         player = ballFactory.createPlayer(cam);
+        engine.addSystem(new ScoreSystem(ballFactory, sb));
+        engine.addSystem(new EnemySystem(ballFactory));
+//      engine.addSystem(new WallSystem(ballFactory));
+        engine.addSystem(new BulletSystem(ballFactory));
+        engine.addSystem(new LevelGenerationSystem(ballFactory));
+
         ballFactory.createFloor();
         ballFactory.createWalls();
         ballFactory.createBackground();

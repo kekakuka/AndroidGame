@@ -117,7 +117,7 @@ public class BodyFactory {
             case STEEL:
                 fixtureDef.density = 1f;
                 fixtureDef.friction = 0.3f;
-                fixtureDef.restitution = 0.1f;
+                fixtureDef.restitution = 8f;
                 break;
             case WOOD:
                 fixtureDef.density = 0.5f;
@@ -127,11 +127,11 @@ public class BodyFactory {
             case RUBBER:
                 fixtureDef.density = 1f;
                 fixtureDef.friction = 0f;
-                fixtureDef.restitution = 1f;
+                fixtureDef.restitution = 9f;
                 break;
             case STONE:
-                fixtureDef.density = 1f;
-                fixtureDef.friction = 0.5f;
+                fixtureDef.density = 0f;
+                fixtureDef.friction = 0f;
                 fixtureDef.restitution = 0f;
                 break;
             default:
