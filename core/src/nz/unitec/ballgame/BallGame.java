@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -26,7 +27,7 @@ public class BallGame extends Game {
     public AppPreferences preferences;
     public B2dAssetManager assMan = new B2dAssetManager();
     public Music bgMusic;
-
+    public Sound bgSound;
     public final static int WIDTH = 480; //
     public final static int HEIGHT = 720;
 //    public final static int HEIGHT = Gdx.graphics.getHeight() * (Gdx.graphics.getWidth() / BallGame.WIDTH); // 720;
@@ -45,6 +46,14 @@ public class BallGame extends Game {
         this.nativeDB = nativeDB;
     }
 
+
+    public void playSoundEnemyDead(){
+        Sound soundEnemyDead = assMan.manager.get(B2dAssetManager.boingSound);
+        if(preferences.isSoundEffectsEnabled()) {
+            soundEnemyDead.play(preferences.getSoundVolume());
+        }
+    }
+
     @Override
     public void create() {
         loadingScreen = new LoadingScreen(this);
@@ -53,10 +62,12 @@ public class BallGame extends Game {
 
         // tells our asset manger that we want to load the images set in loadImages method
         assMan.queueAddMusic();
+        assMan.queueAddSounds();
         // tells the asset manager to load the images and wait until finished loading.
         assMan.manager.finishLoading();
         // loads the 2 sounds we use
         bgMusic = assMan.manager.get(B2dAssetManager.playingSong);
+
         bgMusic.setLooping(true);
         bgMusic.setVolume(preferences.getMusicVolume());
         if (preferences.isMusicEnabled()) {

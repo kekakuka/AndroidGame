@@ -55,7 +55,7 @@ public class B2dAssetManager {
 
     public void queueAddSounds() {
         manager.load(boingSound, Sound.class);
-        manager.load(pingSound, Sound.class);
+     //   manager.load(pingSound, Sound.class);
     }
 
     public void queueAddMusic() {
