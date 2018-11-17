@@ -37,6 +37,9 @@ public class MainScreen implements Screen {
     private static final int MODE_HARD = 2;
 
     //private Sound ping;
+
+    //private "C:\Program Files\Git\bin\bash.exe" --login -i ping;
+
     //private Sound boing;
     private Entity player;
 

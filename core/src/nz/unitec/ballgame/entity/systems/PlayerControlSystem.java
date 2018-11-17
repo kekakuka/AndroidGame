@@ -87,7 +87,8 @@ public class PlayerControlSystem extends IteratingSystem {
                 } else {
                     float currentTouchedX = controller.getTouchedPosition().x;
                     float offset = currentTouchedX - lastTouchedX;
-                    b2body.body.setTransform(b2body.body.getPosition().x + offset, b2body.body.getPosition().y, b2body.body.getAngle());
+                    if(b2body.body.getPosition().x + offset>0&&b2body.body.getPosition().x + offset<RenderingSystem.FRUSTUM_WIDTH){
+                    b2body.body.setTransform(b2body.body.getPosition().x + offset, b2body.body.getPosition().y, b2body.body.getAngle());}
                     lastTouchedX = currentTouchedX;
                 }
             } else {
@@ -100,7 +101,7 @@ public class PlayerControlSystem extends IteratingSystem {
             aim.scl(5f);
             // create a bullet
             ballFactory.createBullet(b2body.body.getPosition().x,
-                    b2body.body.getPosition().y,
+                    b2body.body.getPosition().y+35,
                     aim.x,
                     aim.y,
                     BulletComponent.Owner.PLAYER);
