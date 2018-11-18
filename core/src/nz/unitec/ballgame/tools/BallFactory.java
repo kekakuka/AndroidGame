@@ -89,7 +89,7 @@ public class BallFactory {
 //        pem.addParticleEffect(ParticleEffectManager.FIRE, assMan.manager.get("particles/fire.pe",ParticleEffect.class),1f/128f);
 //        pem.addParticleEffect(ParticleEffectManager.WATER, assMan.manager.get("particles/water.pe",ParticleEffect.class),1f/16f);
 //        pem.addParticleEffect(ParticleEffectManager.SMOKE, assMan.manager.get("particles/smoke.pe",ParticleEffect.class),1f/64f);
-        this.createBackground();
+
     }
 
     /**
@@ -387,7 +387,7 @@ public class BallFactory {
     }
 
     // makes the background item
-    public void createBackground() {
+    public void createBackground(int i) {
         Entity entity = engine.createEntity();
         B2dBodyComponent b2dbody = engine.createComponent(B2dBodyComponent.class);
         TransformComponent position = engine.createComponent(TransformComponent.class);
@@ -395,8 +395,12 @@ public class BallFactory {
         TypeComponent type = engine.createComponent(TypeComponent.class);
 
         position.position.set(223, 357, -10);
+        if(i!=2){
         texture.region = atlas.findRegion("reallygoodback");
-
+        }
+        else {
+            texture.region = atlas.findRegion("reallyhardback");
+        }
         type.type = TypeComponent.SCENERY;
 
         b2dbody.body = bodyFactory.makeBoxPolyBody(223, 357,RenderingSystem.FRUSTUM_WIDTH*2, RenderingSystem.FRUSTUM_HEIGHT*2, BodyFactory.STONE, BodyDef.BodyType.StaticBody,true);

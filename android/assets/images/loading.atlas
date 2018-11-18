@@ -183,3 +183,15 @@ reallygoodback
   orig: 1199, 1791
   offset: 0, 0
   index: -1
+
+game22.png
+format: RGBA8888
+filter: MipMapLinearLinear,MipMapLinearLinear
+repeat: yes
+reallyhardback
+  rotate: false
+  xy: 1, 1
+  size: 599, 959
+  orig: 599, 959
+  offset: 0, 0
+  index: -1

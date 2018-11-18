@@ -21,7 +21,7 @@ public class AndroidDB implements NativeDB{
             @Override
             public void run() {
                 // check if there has a SQLite db otherwise create a new one
-                Toast.makeText(context, "SQLite interface", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Welcome to ballgame", Toast.LENGTH_SHORT).show();
                 db = SQLiteDatabase.openOrCreateDatabase(context.getFilesDir()+"/ballgame.db",null);
                 String score_table = "create table if not exists score(_id integer primary key autoincrement,score integer)";
                 db.execSQL(score_table);

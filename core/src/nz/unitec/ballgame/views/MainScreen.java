@@ -53,12 +53,13 @@ public class MainScreen implements Screen {
 
         if(i == MODE_EASY){
             ballFactory = new BallFactory(engine, parent.assMan, MODE_EASY);
+
         }else if(i == MODE_HARD){
             ballFactory = new BallFactory(engine, parent.assMan, MODE_HARD);
         }else{
             ballFactory = new BallFactory(engine, parent.assMan, MODE_EASY);
         }
-
+        ballFactory.createBackground(i);
         sb = new SpriteBatch();
         RenderingSystem renderingSystem = new RenderingSystem(sb);
         cam = renderingSystem.getCamera();
@@ -85,7 +86,7 @@ public class MainScreen implements Screen {
 
 
         ballFactory.createFloor();
-//        ballFactory.createBackground();
+
         //lvlFactory.createSeeker(Mapper.sCom.get(player),20,15);
         ballFactory.createWalls();
     }
@@ -122,7 +123,7 @@ public class MainScreen implements Screen {
 
         ballFactory.createFloor();
         ballFactory.createWalls();
-        ballFactory.createBackground();
+        ballFactory.createBackground(i);
 
         // reset controller controls (fixes bug where controller stuck on directrion if died in that position)
         controller.left = false;
